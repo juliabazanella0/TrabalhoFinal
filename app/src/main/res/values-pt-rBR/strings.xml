@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">trabalho_final</string>
+    <string name="name">Nome</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirmar Senha</string>
+    <string name="register">Registrar-se</string>
+    <string name="login">Entrar</string>
+    <string name="password">Senha</string>
+</resources>
