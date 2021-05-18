@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/configGameFragment">
 
+    <fragment
+        android:id="@+id/configGameFragment"
+        android:name="com.example.trabalho_final.ConfigGameFragment"
+        android:label="fragment_config_game"
+        tools:layout="@layout/fragment_config_game" >
+        <action
+            android:id="@+id/action_configGameFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.example.trabalho_final.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" >
+        <action
+            android:id="@+id/action_questionFragment_to_askContinueFragment"
+            app:destination="@id/askContinueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/askContinueFragment"
+        android:name="com.example.trabalho_final.AskContinueFragment"
+        android:label="fragment_ask_continue"
+        tools:layout="@layout/fragment_ask_continue" >
+        <action
+            android:id="@+id/action_askContinueFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment" />
+        <action
+            android:id="@+id/action_askContinueFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="com.example.trabalho_final.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/fragment_game_over" >
+        <action
+            android:id="@+id/action_gameOverFragment_to_configGameFragment"
+            app:destination="@id/configGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="com.example.trabalho_final.RankingFragment"
+        android:label="fragment_ranking"
+        tools:layout="@layout/fragment_ranking" />
 </navigation>

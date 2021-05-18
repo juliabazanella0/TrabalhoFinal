@@ -7,4 +7,18 @@
     <string name="register">Registrar-se</string>
     <string name="login">Entrar</string>
     <string name="password">Senha</string>
+    <string name="choose_a_difficulty">Escolha uma dificuldade</string>
+    <string name="select">Selecione</string>
+    <string name="start_game">Começar Jogo</string>
+    <string name="choose_a_category">Escolha uma categoria</string>
+    <string name="question">Pergunta</string>
+    <string name="answer">Responder</string>
+    <string name="finish_game">Terminar Jogo</string>
+    <string name="next_question">Proxima Questão</string>
+    <string name="correct_answer">Resposta Correta</string>
+    <string name="score">Pontuação</string>
+    <string name="category">Categoria</string>
+    <string name="difficulty">Dificuldade</string>
+    <string name="continue_string">Continuar</string>
+    <string name="player">Jogador</string>
 </resources>

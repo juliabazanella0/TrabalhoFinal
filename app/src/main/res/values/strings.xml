@@ -8,4 +8,18 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="email">Email</string>
     <string name="name">Name</string>
+    <string name="choose_a_difficulty">Choose a difficulty</string>
+    <string name="select">Select</string>
+    <string name="start_game">Start Game</string>
+    <string name="choose_a_category">Choose a category</string>
+    <string name="question">Question</string>
+    <string name="answer">Answer</string>
+    <string name="finish_game">Finish Game</string>
+    <string name="next_question">Next Question</string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="score">Score</string>
+    <string name="category">Category</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="continue_string">Continue</string>
+    <string name="player">Player</string>
 </resources>
