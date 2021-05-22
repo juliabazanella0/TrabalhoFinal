@@ -2,7 +2,7 @@ package com.example.trabalho_final.models
 
 data class PersonError(
     var status: String,
-    var data: String
+    var message: String
 )
 
 data class DataError(

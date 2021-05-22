@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trabalho_final.dao.PersonDAO
 import com.example.trabalho_final.models.InPerson
+import com.example.trabalho_final.models.PersonError
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -39,20 +40,21 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         dao.register(InPerson.Person(name, email, password, ""), { response ->
-            //Log.d("newUser", response.toString())
-            val sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE)
-            val user = response.data?.user
-            with (sharedPref.edit()) {
-                putString("name", user?.name)
-                putString("email", user?.email)
-                putString("token", user?.token)
-
-                commit()
-            }
+            Log.d("newUser", response.toString())
+//            val sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE)
+//            val user = response.data?.user
+//            with (sharedPref.edit()) {
+//                putString("name", user?.name)
+//                putString("email", user?.email)
+//                putString("token", user?.token)
+//
+//                commit()
+//            }
+            //Toast.makeText(this, "Registrado com Sucesso", Toast.LENGTH_LONG).show()
             goToLogin()
         },
         {
-            error ->   //RegisterError
+            error -> //PersonError FALTA FAZER ERRO
 
 //            if(name.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
 //                Toast.makeText(this, "Campos não podem ser vazios", Toast.LENGTH_LONG).show();

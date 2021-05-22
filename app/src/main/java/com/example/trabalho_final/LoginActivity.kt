@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity(){
             iniciarMain()
         },
         {
-            error -> //LoginError
+            error -> //FALTA FAZER ERRO
 
         })
     }

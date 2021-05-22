@@ -33,8 +33,8 @@ class PersonDAO {
                   val loginResponse = response.body()!!
                   finished(loginResponse)
               } else {
-                  val response = LoginResponse("error", null)
-                  finished(response)
+                  val response = PersonError("error", "data")
+                  fail(response)
               }
             }
 
@@ -47,17 +47,18 @@ class PersonDAO {
     fun register(person: InPerson.Person, finished: (person: OutPerson) -> Unit, fail: (response: PersonError?) -> Unit) {
         service.insert(person).enqueue(object : Callback<OutPerson> {
             override fun onResponse(call: Call<OutPerson>, response: Response<OutPerson>) {
-                if(response.body() != null) {
+                if(response.body() != null) {                       //|| password.length>=6
                     val registeredUser = response.body()!!
                     finished(registeredUser)
 
                 } else {
-                    val response = OutPerson("error", null, "ErrorMenssager") //erro
-                    finished(response)
+                    val response = PersonError("fail", "Connection Error") //erro
+                    fail(response)
                 }
             }
             override fun onFailure(call: Call<OutPerson>, t: Throwable) {
-                //erro
+                fail(PersonError("fail", "Connection Error"))
+                //Log.e
             }
         })
     }

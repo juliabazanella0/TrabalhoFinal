@@ -17,9 +17,14 @@
     <string name="finish_game">Finish Game</string>
     <string name="next_question">Next Question</string>
     <string name="correct_answer">Correct Answer</string>
-    <string name="score">Score</string>
-    <string name="category">Category</string>
-    <string name="difficulty">Difficulty</string>
+    <string name="score">Score: %1$d</string>
     <string name="continue_string">Continue</string>
     <string name="player">Player</string>
+    <string name="selected_category">Category: %1$s</string>
+    <string name="selected_difficulty">Difficulty: %1$s</string>
+    <string name="category">Category</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
 </resources>
