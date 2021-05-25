@@ -26,4 +26,5 @@
     <string name="easy">Fácil</string>
     <string name="medium">Médio</string>
     <string name="hard">Díficil</string>
+    <string name="logout">Sair</string>
 </resources>

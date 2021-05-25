@@ -27,4 +27,6 @@
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
+    <string name="ranking" translatable="false">Ranking</string>
+    <string name="logout">Logout</string>
 </resources>
