@@ -1,12 +1,16 @@
 package com.example.trabalho_final.dao
 
+import android.util.Log
 import com.example.trabalho_final.models.*
+import com.example.trabalho_final.models.erros.LoginError
+import com.example.trabalho_final.models.erros.RegisterError
 import com.example.trabalho_final.network.services.PeopleService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.trabalho_final.models.erros.Error
 
 class PersonDAO {
 
@@ -26,15 +30,15 @@ class PersonDAO {
         })
     }
 
-    fun login(login: Login, finished: (login: LoginResponse) -> Unit, fail: (response: PersonError?) -> Unit)  {
+    fun login(login: Login, finished: (login: LoginResponse) -> Unit, fail: (response: LoginError?) -> Unit)  {
         service.auth(login).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-              if (response.body() != null){
+              if (response.isSuccessful){
                   val loginResponse = response.body()!!
                   finished(loginResponse)
               } else {
-                  val response = PersonError("error", "data")
-                  fail(response)
+                  val errorResponse = Error.toPOJO(retrofit, LoginError::class.java, response.errorBody()!!)
+                  fail(errorResponse)
               }
             }
 
@@ -44,21 +48,20 @@ class PersonDAO {
         })
     }
 
-    fun register(person: InPerson.Person, finished: (person: OutPerson) -> Unit, fail: (response: PersonError?) -> Unit) {
+    fun register(person: InPerson.Person, finished: (person: OutPerson) -> Unit, fail: (errorResponse: RegisterError) -> Unit) {
         service.insert(person).enqueue(object : Callback<OutPerson> {
             override fun onResponse(call: Call<OutPerson>, response: Response<OutPerson>) {
-                if(response.body() != null) {                       //|| password.length>=6
+                if(response.isSuccessful) {
                     val registeredUser = response.body()!!
                     finished(registeredUser)
-
-                } else {
-                    val response = PersonError("fail", "Connection Error") //erro
-                    fail(response)
+                    return
                 }
+                val error = Error.toPOJO(retrofit, RegisterError::class.java, response.errorBody()!!)
+
+                fail(error!!)
             }
             override fun onFailure(call: Call<OutPerson>, t: Throwable) {
-                fail(PersonError("fail", "Connection Error"))
-                //Log.e
+                Log.e("falhouu", t.toString())
             }
         })
     }

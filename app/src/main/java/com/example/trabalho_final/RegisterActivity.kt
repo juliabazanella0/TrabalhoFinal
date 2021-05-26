@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trabalho_final.dao.PersonDAO
 import com.example.trabalho_final.models.InPerson
-import com.example.trabalho_final.models.PersonError
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -33,35 +32,27 @@ class RegisterActivity : AppCompatActivity() {
 
     fun register(name: String, email: String, password: String, confirmPassword: String){
 
-        if(!password.equals(confirmPassword)) {
+        if(!password.equals(confirmPassword) && password.length > 5) {
             Toast.makeText(this, "Senhas não coincidem", Toast.LENGTH_LONG).show()
             return //erro: registrando mesmo se a senhas estiverem diferentes
 
         }
 
-        dao.register(InPerson.Person(name, email, password, ""), { response ->
+        dao.register(InPerson.Person(name, email, password, ""), {
+            response ->
             Log.d("newUser", response.toString())
-//            val sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE)
-//            val user = response.data?.user
-//            with (sharedPref.edit()) {
-//                putString("name", user?.name)
-//                putString("email", user?.email)
-//                putString("token", user?.token)
-//
-//                commit()
-//            }
-            //Toast.makeText(this, "Registrado com Sucesso", Toast.LENGTH_LONG).show()
             goToLogin()
-        },
-        {
-            error -> //PersonError FALTA FAZER ERRO
+        }, {
+            error ->
+            Toast.makeText(this, "Erro no Registro", Toast.LENGTH_LONG).show()
+        })
+
+    }
 
 //            if(name.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
 //                Toast.makeText(this, "Campos não podem ser vazios", Toast.LENGTH_LONG).show();
 //            }
 
-        })
-    }
 
     fun goToLogin() {
         var intent = Intent( this, LoginActivity::class.java).apply {
