@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trabalho_final.dao.PersonDAO
@@ -36,11 +37,6 @@ class LoginActivity : AppCompatActivity(){
     }
 
     private fun login(email: String, password: String) {
-        if (email.isBlank() || password.isBlank()) {
-            Toast.makeText(this, "Campos não podem ser vazios", Toast.LENGTH_LONG).show();
-            return
-        }
-
         dao.login(Login(email, password), { response ->
             //Log.d("loginResponse", response.toString())
             val sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE)
@@ -57,7 +53,12 @@ class LoginActivity : AppCompatActivity(){
         },
         {
             error ->
-            Log.d("loginResponse", error.toString())
+
+            errorLogin.apply {
+                text = resources.getString(R.string.invalid_email_or_password)
+                visibility = View.VISIBLE
+            }
+            //Log.d("loginResponse", error.toString())
 
         })
     }

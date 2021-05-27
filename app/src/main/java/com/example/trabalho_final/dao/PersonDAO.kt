@@ -43,7 +43,7 @@ class PersonDAO {
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                // Erro de conexão
+                Log.e("falhouu", t.toString())
             }
         })
     }
