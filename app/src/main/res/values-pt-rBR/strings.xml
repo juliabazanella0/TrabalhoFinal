@@ -27,4 +27,9 @@
     <string name="medium">Médio</string>
     <string name="hard">Díficil</string>
     <string name="logout">Sair</string>
+    <string name="cant_be_blank">%1$s não pode ser vazio</string>
+    <string name="has_already_been_taken">%1$s já existe</string>
+    <string name="is_invalid">%1$s é inválido</string>
+    <string name="dont_match">%1$s e %2$s não coincidem</string>
+    <string name="is_too_short">%1$s é muito curta</string>
 </resources>

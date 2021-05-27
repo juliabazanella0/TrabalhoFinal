@@ -29,4 +29,9 @@
     <string name="hard">Hard</string>
     <string name="ranking" translatable="false">Ranking</string>
     <string name="logout">Logout</string>
+    <string name="cant_be_blank">%1$s can\'t be blank</string>
+    <string name="has_already_been_taken">%1$s has already been taken</string>
+    <string name="is_invalid">%1$s is invalid</string>
+    <string name="dont_match">%1$s and %2$s don\'t match</string>
+    <string name="is_too_short">%1$s is too short</string>
 </resources>

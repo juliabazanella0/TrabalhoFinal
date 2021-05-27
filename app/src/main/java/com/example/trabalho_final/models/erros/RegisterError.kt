@@ -5,10 +5,10 @@ data class RegisterError(
     var data: Data
 ){
     data class Data(
-            var errors: Errors
+            var errors: Errors = Errors()
     ) {
         data class Errors(
-            var nome: List<String>? = listOf(),
+            var name: List<String>? = listOf(),
             var email: List<String>? = listOf(),
             var password: List<String>? = listOf()
         )
