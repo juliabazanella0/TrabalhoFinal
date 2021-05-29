@@ -8,26 +8,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 
-class QuestionFragment : Fragment(), View.OnClickListener {
-
-    lateinit var navController: NavController
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+class QuestionFragment : Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_question, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.btAnswer).setOnClickListener(this)
-    }
+    //implementar pergunta e resposta
 
-    override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btAnswer -> navController!!.navigate(R.id.action_questionFragment_to_askContinueFragment)
-        }
+    fun goToAskContinueFragment(){
+        findNavController().navigate(R.id.action_questionFragment_to_askContinueFragment)
     }
 
 }

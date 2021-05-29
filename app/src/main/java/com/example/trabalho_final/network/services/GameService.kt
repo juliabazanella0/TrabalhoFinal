@@ -5,7 +5,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface GameService {
-
     //obter
     @GET("games")
     fun start(

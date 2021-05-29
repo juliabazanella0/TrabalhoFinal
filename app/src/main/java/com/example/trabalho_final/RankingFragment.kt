@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.trabalho_final.adapters.RankingAdapter
+import kotlinx.android.synthetic.main.fragment_ranking.view.*
 
 class RankingFragment : Fragment() {
 
@@ -12,7 +15,12 @@ class RankingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ranking, container, false)
+        val view =  inflater.inflate(R.layout.fragment_ranking, container, false)
+
+        val rankingAdapter = RankingAdapter(this)
+        view.listRanking.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        view.listRanking.adapter = rankingAdapter
+
+        return view
     }
 }

@@ -15,8 +15,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(findNavController(R.id.navHostFragment))
     }
 
-
-    fun goToLogin() {
+    /**fun goToLogin() {
         var intent = Intent(this, LoginActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }
@@ -42,5 +41,5 @@ class MainActivity : AppCompatActivity() {
                 }
 
         goToLogin()
-    }
+    }**/
 }

@@ -24,13 +24,14 @@ class ConfigGameFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_config_game, container, false)
 
-        val difficultyAdapter = ArrayAdapter<Difficulty>(requireContext(), android.R.layout.simple_spinner_item, obterDificuldades()).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            view.selectedDifficulty.adapter = adapter
-        }
-
         val selectedDifficulty = saveDifficulty()
         val selectedCategory = saveCategory()
+
+        val difficultyAdapter = ArrayAdapter<Difficulty>(requireContext(), android.R.layout.simple_spinner_item, obterDificuldades()).also {
+            adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            view.selectedDifficulty.adapter = adapter                                       //obtendo dificuldades
+        }
 
         if(selectedDifficulty != null) {
             view.selectedDifficulty.setSelection(difficultyAdapter.getPosition(selectedDifficulty))
@@ -124,18 +125,5 @@ class ConfigGameFragment : Fragment() {
     fun goToQuestionFragment(){
         findNavController().navigate(R.id.action_configGameFragment_to_questionFragment)
     }
-
-    /**
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.btStartGame).setOnClickListener(this)
-    }
-
-    override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btStartGame -> navController!!.navigate(R.id.action_configGameFragment_to_questionFragment)
-        }
-    } **/
 
 }

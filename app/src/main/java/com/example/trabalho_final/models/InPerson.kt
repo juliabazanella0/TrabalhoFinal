@@ -6,7 +6,7 @@ class InPerson {
         var email: String,
         var password: String,
         var token: String
-    ) {
+) {
         var id: Long? = null
-    }
+  }
 }

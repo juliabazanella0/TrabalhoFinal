@@ -33,4 +33,6 @@
     <string name="dont_match">%1$s e %2$s não coincidem</string>
     <string name="is_too_short">%1$s é muito curta</string>
     <string name="invalid_email_or_password">Email ou Senha inválidos</string>
+    <string name="started_at">Iniciado em %1$s</string>
+    <string name="finished_at">Finalizado em %1$s</string>
 </resources>
