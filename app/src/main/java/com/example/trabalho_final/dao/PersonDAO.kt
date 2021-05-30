@@ -18,18 +18,6 @@ class PersonDAO {
     val retrofit = Retrofit.Builder().baseUrl("https://super-trivia-server.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build()
     val service = retrofit.create(PeopleService::class.java)
 
-    fun getAll(){
-        service.getAll().enqueue(object : Callback<List<InPerson.Person>> {
-            override fun onFailure(call: Call<List<InPerson.Person>>, t: Throwable) {
-            }
-
-            override fun onResponse(call: Call<List<InPerson.Person>>, response: Response<List<InPerson.Person>>) {
-                val people = response.body()!!
-            }
-
-        })
-    }
-
     fun login(login: Login, finished: (login: LoginResponse) -> Unit, fail: (response: LoginError?) -> Unit)  {
         service.auth(login).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
