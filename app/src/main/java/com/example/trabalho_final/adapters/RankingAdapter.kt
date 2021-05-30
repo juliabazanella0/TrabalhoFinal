@@ -16,12 +16,12 @@ class RankingAdapter(context: RankingFragment): RecyclerView.Adapter<RankingAdap
 
     override fun getItemCount() = ranking.size
 
-//    init {
-//        dao.getAll { response ->
-//            this.ranking = response.data.ranking
-//            notifyDataSetChanged()
-//        }
-//    }
+    init {
+        dao.getAll { response ->
+            this.ranking = response.data.ranking
+            notifyDataSetChanged()
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_ranking, parent, false))
