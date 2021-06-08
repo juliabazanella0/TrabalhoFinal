@@ -5,33 +5,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_ask_continue.view.*
 
-class AskContinueFragment : Fragment(), View.OnClickListener {
-
-    lateinit var navController: NavController
-
+class AskContinueFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_ask_continue, container, false)
+        val view = inflater.inflate(R.layout.fragment_ask_continue, container, false)
+
+        view.btNextQuestion.setOnClickListener { goToQuestionFragment() }
+        view.btFinishGame.setOnClickListener { goToGameOverFragment() }
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.btFinishGame).setOnClickListener(this)
-        view.findViewById<Button>(R.id.btNextQuestion).setOnClickListener(this)
+    fun saveGame(){
+
     }
 
-    override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btFinishGame -> navController!!.navigate(R.id.action_askContinueFragment_to_gameOverFragment)
-            R.id.btNextQuestion -> navController!!.navigate(R.id.action_askContinueFragment_to_questionFragment)
-        }
+    fun obterToken(){
+
+    }
+
+    fun endGame(){
+
+    }
+
+    fun goToQuestionFragment(){
+        findNavController().navigate(R.id.action_askContinueFragment_to_questionFragment)
+    }
+
+    fun goToGameOverFragment(){
+        findNavController().navigate(R.id.action_askContinueFragment_to_gameOverFragment)
     }
 
 }

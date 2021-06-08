@@ -5,30 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_game_over.view.*
 
-class GameOverFragment : Fragment(), View.OnClickListener {
+class GameOverFragment : Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_game_over, container, false)
 
-    lateinit var navController: NavController
+        view.btContinue.setOnClickListener { goToConfigGameFragment() }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_game_over, container, false)
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.btContinue).setOnClickListener(this)
+    fun getGame(){
+
     }
 
-    override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btContinue -> navController!!.navigate(R.id.action_gameOverFragment_to_configGameFragment)
-        }
+    fun goToConfigGameFragment(){
+        findNavController().navigate(R.id.action_gameOverFragment_to_configGameFragment)
     }
+
 }

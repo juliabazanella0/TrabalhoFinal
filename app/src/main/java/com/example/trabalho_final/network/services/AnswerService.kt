@@ -10,8 +10,5 @@ import retrofit2.http.Query
 interface AnswerService {
     @POST("problems/answer")
     @Headers("Content-Type: application/json")
-    fun answer(
-            @Header("Authorization") token: String,
-            @Query("answer") answer: Long
-    ): Call<AnswerResponse>
+    fun answer(@Header("Authorization") token: String, @Query("answer") answer: Long): Call<AnswerResponse>
 }
