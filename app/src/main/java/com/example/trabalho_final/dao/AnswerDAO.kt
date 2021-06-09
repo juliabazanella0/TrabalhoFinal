@@ -1,5 +1,6 @@
 package com.example.trabalho_final.dao
 
+import android.util.Log
 import com.example.trabalho_final.models.responses.AnswerResponse
 import com.example.trabalho_final.network.services.AnswerService
 import retrofit2.Call
@@ -16,13 +17,14 @@ class AnswerDAO {
     ) {
         return service.answer(token, answer).enqueue(object: Callback<AnswerResponse> {
             override fun onResponse(call: Call<AnswerResponse>, response: Response<AnswerResponse>) {
+                Log.d("xxx", "response")
                 response?.body()?.let { response ->
                     finished(response)
                 }
             }
 
             override fun onFailure(call: Call<AnswerResponse>, t: Throwable) {
-                //erro
+                Log.d("xxx", "fail")
             }
         })
     }

@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_question.*
 import kotlinx.android.synthetic.main.fragment_question.view.*
 
 class QuestionFragment : Fragment() {
+    lateinit var answerAdapter: AnswerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -54,20 +55,21 @@ class QuestionFragment : Fragment() {
 
     fun openProblem() {}
 
-    fun answer(){
-//        val dao = AnswerDAO()
-//        val answerAdapter = AnswerAdapter(mutableListOf())
-//        val selectedAnswer = answerAdapter.getAnswer()
-//        if(selectedAnswer == null) {
-//            return
-//        }
-//
-//        dao.answer(obterToken(), selectedAnswer.order){ response ->
-//            val isCorrect = response.data.answer.correctAnswer.order == selectedAnswer.order
-//            val score = response.data.answer.score
-//        }
-//
-//        goToAskContinueFragment()
+    fun answer(){               //continuar
+        val dao = AnswerDAO()
+        //val answerAdapter = AnswerAdapter(mutableListOf())
+        val selectedAnswer = answerAdapter.getAnswer()
+        if(selectedAnswer == null) {
+            return
+        }
+
+        dao.answer(obterToken(), selectedAnswer.order){ response ->
+            val isCorrect = response.data.answer.correctAnswer.order == selectedAnswer.order
+            val score = response.data.answer.score
+
+            goToAskContinueFragment()
+        }
+
     }
 
     fun mostrarPoblem(view: View){
@@ -75,7 +77,7 @@ class QuestionFragment : Fragment() {
         dao.next(obterToken()){ response ->
             idQuestion.setText(Html.fromHtml(response.data.problem.question).toString())
             //idQuestion.setText(response.data.problem.question)
-            val answerAdapter = AnswerAdapter(mutableListOf())
+            answerAdapter = AnswerAdapter(mutableListOf())
             view.listAnswer.adapter = answerAdapter
             view.listAnswer.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             answerAdapter.update(response.data.problem.answers.toMutableList())
