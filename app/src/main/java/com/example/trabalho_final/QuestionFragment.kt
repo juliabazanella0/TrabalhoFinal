@@ -27,22 +27,12 @@ class QuestionFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_question, container, false)
 
         mostrarPoblem(view)
+
         view.btAnswer.setOnClickListener {
             answer()
         }
+
         return view
-    }
-
-    fun getConfig(): Boolean {
-        val categoryName = requireContext()
-                .getSharedPreferences("config", Context.MODE_PRIVATE)
-                .getString("name_category", "")
-
-        val difficulty = requireContext()
-                .getSharedPreferences("config", Context.MODE_PRIVATE)
-                .getString("difficulty", "")
-
-        return !categoryName!!.isEmpty() && !difficulty!!.isEmpty()
     }
 
     fun obterToken(): String{
@@ -55,19 +45,22 @@ class QuestionFragment : Fragment() {
 
     fun openProblem() {}
 
-    fun answer(){               //continuar
+    fun answer(){
         val dao = AnswerDAO()
-        //val answerAdapter = AnswerAdapter(mutableListOf())
         val selectedAnswer = answerAdapter.getAnswer()
         if(selectedAnswer == null) {
             return
         }
 
-        dao.answer(obterToken(), selectedAnswer.order){ response ->
+        dao.answer(obterToken(), selectedAnswer.order) { response ->
             val isCorrect = response.data.answer.correctAnswer.order == selectedAnswer.order
             val score = response.data.answer.score
 
-            goToAskContinueFragment()
+            val bundle = Bundle()
+            bundle.putLong("score", score)
+            bundle.putBoolean("isCorrect", isCorrect)
+            findNavController().navigate(R.id.askContinueFragment, bundle)
+            //goToAskContinueFragment()
         }
 
     }
@@ -76,7 +69,6 @@ class QuestionFragment : Fragment() {
         val dao = ProblemDAO()
         dao.next(obterToken()){ response ->
             idQuestion.setText(Html.fromHtml(response.data.problem.question).toString())
-            //idQuestion.setText(response.data.problem.question)
             answerAdapter = AnswerAdapter(mutableListOf())
             view.listAnswer.adapter = answerAdapter
             view.listAnswer.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -84,7 +76,7 @@ class QuestionFragment : Fragment() {
         }
     }
 
-    fun goToAskContinueFragment(){
-        findNavController().navigate(R.id.askContinueFragment)
-    }
+//    fun goToAskContinueFragment(){
+//        findNavController().navigate(R.id.askContinueFragment)
+//    }
 }

@@ -48,23 +48,23 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:text="@string/correct_answer"
         android:textColor="#0C0C0C"
         android:textSize="26sp"
         app:layout_constraintBottom_toTopOf="@+id/scoree"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/correct_answer" />
 
     <TextView
         android:id="@+id/scoree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/score"
         android:textColor="#0C0C0C"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbCorrect" />
+        app:layout_constraintTop_toBottomOf="@+id/lbCorrect"
+        tools:text="Score: 1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

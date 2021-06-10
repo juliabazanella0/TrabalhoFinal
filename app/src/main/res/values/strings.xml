@@ -37,4 +37,5 @@
     <string name="invalid_email_or_password">Invalid Email or Password</string>
     <string name="started_at">Started at %1$s</string>
     <string name="finished_at">Finished at %1$s</string>
+    <string name="incorrect_answer">Incorrect Answer</string>
 </resources>
